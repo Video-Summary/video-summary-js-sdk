@@ -45,6 +45,8 @@ The SDK offers several methods to interact with your videos:
 #### Note 
 The id and callbackUrl are optional. the id field can be used for your own reference if you have as asset id already. the callbackUrl is used to send a webhook when the video is processed and sends the id back to you.
 
+If you don't provide a callback url, the call will be synchronous and wait for the processing to complete.
+
 ### `summarize(url, [id], [callbackUrl])`
 Summarizes the video content. Provide the URL of the video, and optionally, an ID and a callback URL for asynchronous processing. 
 
