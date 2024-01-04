@@ -219,6 +219,16 @@ class VideoSummarySDK {
         'Authorization': `Bearer ${this.apiKey}`
       },
     });
+    if (response?.data?.error) {
+      // if error includes Authorization error, it's probably an invalid api key
+      if (response.data.error.includes('Authorization')) {
+        return { error: 'invalid api key. head over to https://app.videosummary.io/dashboard and double check!' }
+      }
+      return { error: response.data.error }
+    }
+    if (!response?.data?.upload?.upload) {
+      return { error: 'upload failed' }
+    }
     const uploadURL = response.data.upload.upload;
 
     // upload the file to the url. it's a signed s3 url 
