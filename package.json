@@ -1,13 +1,22 @@
 {
   "name": "video-summary",
-  "version": "1.0.2",
-  "description": "// Example usage const sdk = new VideoSummarySDK('your_api_key_here'); sdk.transcribe('https://s3.us-east-1.wasabisys.com/videosummary/demo.mp4', 'your_id_here')   .then(response => console.log(response))   .catch(error => console.error(error));",
+  "version": "1.0.3",
+  "description": "Video Summary SDK is a powerful Node.js module for advanced video processing, offering features like speech-to-text transcription, content summarization, automatic chapter extraction, and comprehensive video summarization. It's perfect for developers looking to integrate video analysis into their projects. Example usage: const sdk = new VideoSummarySDK('your_api_key_here'); sdk.transcribe('https://s3.us-east-1.wasabisys.com/videosummary/demo.mp4', 'your_id_here').then(response => console.log(response)).catch(error => console.error(error));",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Your Name or Organization",
   "license": "MIT",
+  "keywords": [
+    "video processing",
+    "speech-to-text",
+    "video summarization",
+    "transcription",
+    "chapter extraction",
+    "video analysis",
+    "Node.js"
+  ],
   "dependencies": {
     "axios": "^1.6.3"
   }
