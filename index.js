@@ -1,7 +1,7 @@
 const config = require('./config.json')
 const fs = require('fs')
 const axios = require('axios');
-const baseUrl = config.baseUrl
+const baseUrl = "https://api.videosummary.io"
 
 const getUrlType = (url) => {
   // if it's a file, a local path, or a url 
