@@ -11,11 +11,23 @@ const getUrlType = (url) => {
 }
 
 class VideoSummarySDK {
+  /**
+   * Constructs an instance of the VideoSummarySDK.
+   * @param {string} apiKey - The API key for authentication.
+   * @param {string} [baseUrl] - The base URL of the VideoSummary API.
+   */
   constructor(apiKey, _baseUrl = null) {
     this.apiKey = apiKey;
     this.baseUrl = _baseUrl || baseUrl;
   }
 
+  /**
+   * Transcribes the audio content of a video into text.
+   * @param {string} url - The URL of the video or the path to a local file.
+   * @param {string} [id] - An optional identifier for the transcription task.
+   * @param {string} [callbackUrl] - A callback URL to notify upon completion of the transcription.
+   * @returns {Promise<object>} - A promise resolving to an object containing the transcription and the file ID.
+   */
   async transcribe(url, id = null, callbackUrl = null) {
     if (!url) return { error: 'url is required' }
     const fileType = getUrlType(url)
@@ -35,8 +47,16 @@ class VideoSummarySDK {
       const transcript = await json.json()
       return { transcript, fileId: res.file.id }
     }
+    return { error: 'Unknown error, transcription failed' }
   }
 
+  /**
+   * Extracts chapter information from a video.
+   * @param {string} url - The URL of the video or the path to a local file.
+   * @param {string} [id] - An optional identifier for the chapter extraction task.
+   * @param {string} [callbackUrl] - A callback URL to notify upon completion.
+   * @returns {Promise<object>} - A promise resolving to an object containing the chapters, transcript, and file ID.
+   */
   async chapter(url, id = null, callbackUrl = null) {
     if (!url) return { error: 'url is required' }
     const fileType = getUrlType(url)
@@ -77,6 +97,13 @@ class VideoSummarySDK {
     return { transcript, chapters, fileId: res.file.id }
   }
 
+  /**
+   * Performs both summarization and chapter extraction on a video.
+   * @param {string} url - The URL of the video or the path to a local file.
+   * @param {string} [id] - An optional identifier for the task.
+   * @param {string} [callbackUrl] - A callback URL for completion notification.
+   * @returns {Promise<object>} - A promise resolving to an object containing the chapters, summary, transcript, and file ID.
+   */
   async summarizeAndChapter(url, id = null, callbackUrl = null) {
     if (!url) return { error: 'url is required' }
     const fileType = getUrlType(url)
@@ -116,6 +143,13 @@ class VideoSummarySDK {
     return { transcript, chapters, summary: res?.file?.final_summary, fileId: res.file.id }
   }
 
+  /**
+   * Generates a summary of a video's content.
+   * @param {string} url - The URL of the video or the path to a local file.
+   * @param {string} [id] - An optional identifier for the summarization task.
+   * @param {string} [callbackUrl] - A callback URL to notify upon completion.
+   * @returns {Promise<object>} - A promise resolving to an object with the summary, transcript, and file ID.
+   */
   async summarize(url, id = null, callbackUrl = null) {
     if (!url) return { error: 'url is required' }
     const fileType = getUrlType(url)
