@@ -166,7 +166,6 @@ class VideoSummarySDK {
     }
 
     const responseData = await response.json();
-    console.log("POLL RESPONSE DATA responseData:", responseData)
     if (responseData?.file?.callback) {
       return responseData; // Asynchronous request, return initial response
     } else {
@@ -176,7 +175,6 @@ class VideoSummarySDK {
 
 
   async _pollForResult(fileId) {
-    console.log('poll for results!!!', fileId);
     const pollEndpoint = `${this.baseUrl}/v1/auto/file/${fileId}?id=${fileId}`;
     let result;
     do {
