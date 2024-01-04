@@ -1,0 +1,14 @@
+{
+  "name": "video-summary",
+  "version": "1.0.0",
+  "description": "// Example usage const sdk = new VideoSummarySDK('your_api_key_here'); sdk.transcribe('https://s3.us-east-1.wasabisys.com/videosummary/demo.mp4', 'your_id_here')   .then(response => console.log(response))   .catch(error => console.error(error));",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.3"
+  }
+}
