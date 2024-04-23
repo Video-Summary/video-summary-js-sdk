@@ -28,7 +28,7 @@ const VideoSummary = new VideoSummarySDK('your api key')
 
 setTimeout(async () => {
   try {
-    // local file works, s3 url works, signed s3 url works
+    // local file, s3 url, and signed s3 url all work! You can also send an audio file 
     const path = './your/local/file.mp4'
     const res = await VideoSummary.summarize(path)
     console.log("video summary res:", res)
@@ -58,6 +58,12 @@ Extracts chapters from the video for easy navigation and understanding. Requires
 
 ### `summarizeAndChapter(url, [id], [callbackUrl])`
 Performs both summarization and chapter extraction on the video. Input the video URL, and optionally, an ID and a callback URL.
+
+### `getFiles(limit, offset)`
+Retrieves a list of processed files. You can specify the number of files to return and the offset.
+
+### `getFile(fileId)`
+Fetches the details of a specific file by its ID.
 
 Each method returns a promise that resolves to an object with relevant data about the video processing, including transcripts, summaries, chapters, and file IDs.
 

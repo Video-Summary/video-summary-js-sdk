@@ -144,6 +144,59 @@ class VideoSummarySDK {
   }
 
   /**
+   * Get a list of files uploaded by the user.
+   * @param {integer} [limit] - The URL of the video or the path to a local file.
+   * @param {integer} [offset] - An optional identifier for the summarization task.
+   * @returns {Promise<object>} - A promise resolving to an object with the total count and the list of files
+   */
+  async getFiles(limit = 10, offset = 0) {
+    const endpoint = `${this.baseUrl}/v1/auto/files?limit=${limit}&offset=${offset}`;
+    const res = await this._postRequest(endpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.apiKey}`
+      },
+    });
+    return { totalCount: res.total_count, files: res.files }
+  }
+
+  /**
+   * Get a file by its ID.
+   * @param {string} fileId - The ID of the file.
+   * @returns {Promise<object>} - A promise resolving to an object with the file details.
+   * @example
+   * const file = await sdk.getFile('file UUID');
+   * console.log(file);
+   * // {
+   * //   id: 'fileId',
+   * //   url: 'https://api.videosummary.io/v1/auto/file/fileId',
+   * //   complete: true,
+   * //   failed: false,
+   * //   failed_reason: null,
+   * //   callback: null,
+   * //   chaptering: null,
+   * //   final_summary: 'This is a summary of the video content.',
+   * //   transcript: 'https://api.videosummary.io/v1/auto/file/fileId/transcript',
+   * //   video: 'https://api.videosummary.io/v1/auto/file/fileId/video'
+   * // }
+   **/
+
+  async getFile(fileId) {
+    const endpoint = `${this.baseUrl}/v1/auto/file/${fileId}`;
+    const res = await this._postRequest(endpoint, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.apiKey}`
+      },
+    });
+    return res?.file
+  }
+
+
+
+  /**
    * Generates a summary of a video's content.
    * @param {string} url - The URL of the video or the path to a local file.
    * @param {string} [id] - An optional identifier for the summarization task.
